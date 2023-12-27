@@ -63,9 +63,3 @@ streamlit run app.py
 
 If you want to contribute to this project, feel free to fork it and submit a pull request. Follow the [contribution guidelines](link-to-contribution-guidelines) for a smooth collaboration.
 
-## License
-
-This project is licensed under the [Your License Name] License - see the [LICENSE.md](LICENSE.md) file for details.
-```
-
-Replace the placeholders like `url-to-logo`, `gemini-pro-api-link`, and others with the actual information and URLs for your project. Additionally, you can add more sections to the README depending on the complexity and features of your project.
