@@ -1,19 +1,21 @@
 from dotenv import load_dotenv
 
-load_dotenv()  # take environment variables from .env.
+load_dotenv()
+
+from show_data import display_extracted_data
 
 import streamlit as st
+
 import os
-import pathlib
-import textwrap
+
 from PIL import Image
 
 
 import google.generativeai as genai
 
+GoogleApiKey = os.getenv("Google_API_KEY")
 
-os.getenv("GOOGLE_API_KEY")
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=GoogleApiKey)
 
 ## Function to load OpenAI model and get respones
 
@@ -56,15 +58,76 @@ if uploaded_file is not None:
 submit=st.button("Tell me about the image")
 
 input_prompt = """
-               You are an expert in understanding invoices.
-               You will receive input images as invoices &
-               you will have to answer questions based on the input image
+              Please extract relevant information from the uploaded invoice image and provide the data in JSON format. The extracted data may include key-value pairs or structured information such as:
+
+- Vendor Information (name, address, contact details)
+- Invoice Details (number, date, due date)
+- Item Details (description, quantity, unit price, total price)
+- Tax Details (type, rate, amount)
+- Payment Information (transaction ID, amount, method)
+- Other Information (sent by, received by, additional notes)
+
+Extract as much information as possible from the invoice, organizing it into a JSON format. Ensure that the JSON object is structured in a way that captures the variability of the data present in different invoices.
+
+For example:
+{
+    "vendor": {
+        "name": "",
+        "address": "",
+        "contact": ""
+    },
+    "invoice": {
+        "number": "",
+        "date": "",
+        "due_date": ""
+    },
+    "items": [
+        {
+            "description": "",
+            "quantity": "",
+            "unit_price": "",
+            "total_price": ""
+        },
+        ...
+    ],
+    "taxes": [
+        {
+            "type": "",
+            "rate": "",
+            "amount": ""
+        },
+        ...
+    ],
+    "payment": {
+        "transaction_id": "",
+        "amount": "",
+        "method": ""
+    },
+    "other_information": {
+        "sent_by": "",
+        "received_by": "",
+        "notes": ""
+    },
+    ...
+}
+
+Please provide the extracted data in the specified JSON format.
+
                """
 
 ## If ask button is clicked
 
 if submit:
-    image_data = input_image_setup(uploaded_file)
-    response=get_gemini_response(input_prompt,image_data,input)
-    st.subheader("The Response is")
-    st.write(response)
+    if submit:
+        image_data = input_image_setup(uploaded_file)
+        response = get_gemini_response(input_prompt, image_data, input)
+
+    # Remove code block wrappers from the response
+        response = response.strip().strip('```json').strip() 
+        response = response.replace("JSON ", "").strip()
+    
+    #Calling function from show_data.py
+        display_extracted_data(response)
+    
+
+ 

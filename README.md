@@ -1,65 +1,48 @@
-
-# Invoice Extractor with Gemini Pro API
-
-
+# Receipt Extractor with Gemini Pro API
 
 ## Overview
 
-This project is an Invoice Extractor built using the Gemini Pro API. It provides functionality to extract information from invoices using the Gemini Pro service.
-
-## Table of Contents
-
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [Files and Structure](#files-and-structure)
-- [Contributing](#contributing)
-- [License](#license)
+Welcome to the Receipt Extractor project powered by the Gemini Pro API. This solution allows for effortless extraction of data from receipts using Gemini Pro's robust service.
 
 ## Getting Started
 
 ### Prerequisites
 
+Before diving into this project, ensure you have the following:
+
 - Python 3.10
-- Gemini Pro API Key (Add instructions on how to obtain it)
+- Access to the Gemini Pro API Key ([Obtain it here](https://aistudio.google.com/app/apikey))
 
 ### Installation
 
-1. Clone the repository:
+Let's set up the project step by step:
 
+1. **Clone the repository:**
     ```bash
-    git clone https://github.com/Dishantkharkar/invoice-extractor-gemini-pro.git
-    cd invoice-extractor-gemini-pro
+    git clone https://github.com/usamafazal01/receipt-data-extractor-gemini-pro.git
+    cd receipt-data-extractor-gemini-pro
     ```
 
-2. Install dependencies:
-
+2. **Install dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Set up API key:
+3. **Configure the API key:**
+    - Obtain your Gemini Pro API key from the [Gemini Pro Developer Portal](https://aistudio.google.com/app/apikey).
+    - Store the API key securely, considering options like environment variables or a configuration file.
 
-    - Obtain your Gemini Pro API key from [Gemini Pro Developer Portal]([gemini-pro-api-link](https://makersuite.google.com/app/apikey)).
-    - Store the API key securely. (Consider using environment variables or a configuration file)
+## Project Structure
+
+The project follows a simple structure:
+
+- **app.py**: This is the main application file where the receipt extraction functionality is implemented.
+- **show_data.py**: This file converts the extracted JSON data into tabular form and displays it as clean data. Additionally, it provides the functionality to download this tabular data as an Excel file to your computer.
+- **requirements.txt**: Contains a list of Python packages required for the project.
 
 ## Usage
 
-Describe how to use your project. Provide examples and explain any configuration settings. Include information on how to run the application and any additional steps users need to take.
+To use the application, simply run the following command:
 
 ```bash
 streamlit run app.py
-```
-
-## Files and Structure
-
-- **.gitignore**: Configuration file specifying files/directories to be ignored by Git.
-- **README.md**: Project documentation.
-- **app.py**: Main application file.
-- **requirements.txt**: List of Python packages required for the project.
-
-## Contributing
-
-If you want to contribute to this project, feel free to fork it and submit a pull request. Follow the [contribution guidelines](link-to-contribution-guidelines) for a smooth collaboration.
-
